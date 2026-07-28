@@ -664,7 +664,7 @@
   </tbody>
 </table>
           </div>
-          <figcaption><b>Table 4.</b> <strong>GC-segmentation sweep (20&#8239;bp window GC threshold).</strong> Seven thresholds span frozen fractions from 0.85 to 0.05, sweeping the freeze amount as a continuous axis. Activity is non-monotone and peaks at &ge; 0.65 without ever exceeding 8% of LocoGen, while authenticity rises as the frozen fraction shrinks (0.79 &rarr; 0.95 for uniform random): replacing <em>more</em> of the scaffold makes the output more train-like, so no threshold buys activity and plausibility together.</figcaption>
+          <figcaption><b>Table 4.</b> <strong>GC-segmentation hyperparameter sweep (20&#8239;bp window GC threshold).</strong></figcaption>
         </figure>
 
         <figure class="table-figure">
@@ -720,7 +720,7 @@
   </tbody>
 </table>
           </div>
-          <figcaption><b>Table 5.</b> <strong>Motif-scan sweep (JASPAR PSSM detection threshold).</strong> Lowering the per-motif false-positive rate from 10<sup>&minus;3</sup> to 10<sup>&minus;5</sup> shrinks the frozen footprint from 99% to 25%, leaving a background that can actually be replaced. Denser motif fixing does <em>not</em> buy activity: at p &lt; 10<sup>&minus;3</sup> only ~2&#8239;bp per sequence remain replaceable, so the output is nearly a copy of the scaffold and authenticity drops to 0.73 as well.</figcaption>
+          <figcaption><b>Table 5.</b> <strong>Motif-scan hyperparameter sweep (JASPAR PSSM detection threshold).</strong> </figcaption>
         </figure>
 
         <figure class="table-figure">
@@ -804,7 +804,7 @@
   </tbody>
 </table>
           </div>
-          <figcaption><b>Table 6.</b> <strong>Saliency-segmentation sweep (fraction of top-saliency positions frozen).</strong> Positions are ranked by |&part;&#8239;activity/&part; x| summed over A/C/G/T, using the <em>same</em> activity predictor whose gradient guides LocoGen, then the top fraction is frozen. Giving the baseline LocoGen's own guidance signal does not close the gap: activity peaks at 0.29 (top 0.25), i.e. 6% of LocoGen, while authenticity reaches 0.96 &mdash; the highest of any arm in this study and above LocoGen's 0.91. Saliency-selected regions carry no GC bias (frozen GC 0.450 vs background 0.450), so this is a genuinely independent third criterion rather than a proxy for GC content.</figcaption>
+          <figcaption><b>Table 6.</b> <strong>Saliency-segmentation hyperparameter sweep </strong>strong> </figcaption>
         </figure>
     </div>
   </div>
