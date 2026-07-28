@@ -331,12 +331,6 @@
     <div class="subpanel" id="MbXe_ablation">
         <h2 class="section-title">Ablation</h2>
 
-        <figure>
-          <img src="Reviewer_MbXe/Ablation/learnt_vs_random_mask.png"
-               alt="Learnt invariant mask versus count-matched random mask, with per-sequence Jaccard index">
-          <figcaption><b>Figure 4.</b> <strong>The learnt invariant region is not a random subset of positions.</strong> (a) For ten HepG2 enhancers, the learnt invariant mask (dark) and a count-matched random mask (purple) along the 200&#8239;bp window; the light band is the OOD-damped background. Both masks select the same number of positions, so any difference in the ablation is attributable to <em>which</em> positions are spared rather than how many. (b) Per-sequence Jaccard index between the two masks.</figcaption>
-        </figure>
-
         <figure class="table-figure">
           <div class="table-scroll">
 <table id="tbl-ablation" class="sweep">
@@ -431,7 +425,7 @@
       <td class="ctr"><span class="off">&ndash;</span></td>
       <td class="ctr">Learnt</td>
       <td class="num"><strong>4.679&plusmn;0.021</strong></td>
-      <td class="num"><strong>0.716&plusmn;0.019</strong></td>
+      <td class="num"><strong>0.716&plusmn;0.251</strong></td>
       <td class="num"><strong>0.906&plusmn;0.006</strong></td>
       <td class="num"><strong>+0.71&plusmn;0.00</strong></td>
       <td class="num"><strong>0.055&plusmn;0.005</strong></td>
@@ -442,6 +436,13 @@
           </div>
           <figcaption><b>Table 2.</b> <strong>Locality ablation on HepG2.</strong> CG: classifier guidance. Glob. OOD: out-of-distribution control applied to all positions; Loc. OOD: OOD applied to mask-selected positions. The Loc. OOD mask is <em>Learnt</em>: the trained separator&rsquo;s invariant region (<i>M</i>&#8239;&ge;&#8239;0.5) is spared and the background is damped. <em>Attack</em> instead applies negative property guidance to that same learnt invariant region, keeping the background OOD identical to Full. <i>n</i>&#8239;=&#8239;3 seeds.</figcaption>
         </figure>
+
+        <figure>
+          <img src="Reviewer_MbXe/Ablation/learnt_vs_random_mask.png"
+               alt="Learnt invariant mask versus count-matched random mask, with per-sequence Jaccard index">
+          <figcaption><b>Figure 4.</b> <strong>The learnt invariant region is not a random subset of positions.</strong> (a) For ten HepG2 enhancers, the learnt invariant mask (dark) and a count-matched random mask (purple) along the 200&#8239;bp window; the light band is the OOD-damped background. Both masks select the same number of positions, so any difference in the ablation is attributable to <em>which</em> positions are spared rather than how many. (b) Per-sequence Jaccard index between the two masks.</figcaption>
+        </figure>
+
     </div>
   </div>
 
