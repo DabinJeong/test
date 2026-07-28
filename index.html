@@ -186,14 +186,31 @@
   @media (max-width:720px){
     .figure-row{flex-direction:column;}
   }
-  .pdf-fallback{
-    padding:1.5rem;
-    font-size:0.9rem;
-    color:var(--ink-soft);
-  }
-  .pdf-fallback a{color:var(--accent);}
-
   ::selection{background:var(--accent-soft);}
+
+
+  /* --- sweep tables (booktabs feel) --- */
+  .table-figure{margin:2.5rem 0;}
+  .table-scroll{overflow-x:auto;}
+  table.sweep{min-width:620px; margin:0;}
+  table.sweep th,
+  table.sweep td{border-bottom:none; vertical-align:top;}
+  table.sweep th.num,
+  table.sweep td.num{text-align:right; font-variant-numeric:tabular-nums;}
+  table.sweep thead th{border-bottom:1px solid var(--ink-soft); padding-bottom:0.45rem;}
+  table.sweep tbody tr.grp:not(:first-child) > td{border-top:1px solid var(--line);}
+  table.sweep tbody tr.ref td{border-top:2px solid var(--ink-soft); font-weight:600;}
+  table.sweep th.ctr,
+  table.sweep td.ctr{text-align:center; font-variant-numeric:tabular-nums;}
+  table.sweep th.grouped{border-bottom:1px solid var(--line); padding-bottom:0.2rem;}
+  table.sweep th em{display:block; text-transform:none; letter-spacing:0; font-size:0.92em;}
+  table.sweep .dag{color:var(--accent); font-weight:600;}
+  table.sweep .chk{color:var(--accent); font-weight:700;}
+  table.sweep .off{color:var(--line);}
+  table.sweep .rank{color:var(--ink-soft); font-size:0.85em; font-weight:400;}
+  table.sweep tbody tr.hl td{border-top:2px solid var(--ink-soft); background:var(--accent-soft);}
+  table.sweep strong{color:var(--accent);}
+  table.sweep u{text-decoration-thickness:1px; text-underline-offset:3px;}
 
   /* every panel is real markup, so the page still reads with scripts off */
   .no-js .panel,
@@ -212,7 +229,6 @@
   <nav class="tabs-l1">
     <button class="active" data-panel="MbXe">Reviewer MbXe</button>
     <button data-panel="1JiD">Reviewer 1JiD</button>
-    <button data-panel="manuscript">Revised Manuscript</button>
   </nav>
 
   <!-- ===================== Reviewer MbXe ===================== -->
@@ -233,24 +249,199 @@
             <figcaption><b>Figure 1.</b> Property / Authenticity / Plausibility three-axis interactive plot &mdash; drag to rotate, scroll to zoom.</figcaption>
           </figure>
           <figure>
-            <img src="Reviewer_MbXe/Hyperparameter_sweep/balanced_score.png" alt="Balanced three-axis score bar chart">
+            <img src="Reviewer_MbXe/Hyperparameter_sweep/balanced_score.jpg" alt="Balanced three-axis score bar chart">
             <figcaption><b>Figure 2.</b> Balanced score (P&middot;N&middot;Pl)<sup>1/3</sup> &mdash; LOCOGEN achieves the highest balanced score across sweep points.</figcaption>
           </figure>
         </div>
         <figure>
-          <img src="Reviewer_MbXe/Hyperparameter_sweep/sweep_metrics_table.png" alt="Hyperparameter sweep metrics table">
-          <figcaption><b>Figure 3.</b> Strength knob per method (in parentheses after each method): &lambda; = OOD/calibration strength (ood_lambda); r = property-pull ratio alpha_ratio at &lambda;=0.7 (paper default r=3.0 = the &lambda;=0.7 row; r=1/2 are lower-pull variants); cap = MDLM+CG classifier-guidance &alpha;-cap (alpha_cap); M = SVDD number of candidates per step (tweedie/SVDD-PM); tds &alpha; = SVDD-TDS importance-resampling temperature; gs = DNA-Diff classifier-free guidance scale (cond_weight; author base 1.0).</figcaption>
+          <img src="Reviewer_MbXe/Hyperparameter_sweep/sweep_metrics_table.jpg" alt="Hyperparameter sweep metrics table">
+          <figcaption><b>Figure 3.</b> Evaluation metrics across the sweep, one row per hyperparameter setting. The value in parentheses is each method&rsquo;s strength setting: &lambda; = OOD/calibration strength (ood_lambda); r = property-pull ratio alpha_ratio at &lambda;=0.7 (paper default r=3.0 = the &lambda;=0.7 row; r=1/2 are lower-pull variants); cap = MDLM+CG classifier-guidance &alpha;-cap (alpha_cap); M = SVDD number of candidates per step (tweedie/SVDD-PM); tds &alpha; = SVDD-TDS importance-resampling temperature; gs = DNA-Diff classifier-free guidance scale (cond_weight; author base 1.0).</figcaption>
         </figure>
     </div>
 
     <div class="subpanel" id="MbXe_robustness">
         <h2 class="section-title">Robustness</h2>
-        <p class="note">Fill in content here.</p>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-oracle" class="sweep">
+  <thead>
+    <tr>
+      <th rowspan="2">Method</th>
+      <th class="ctr grouped" colspan="2">Activity</th>
+      <th class="ctr grouped" colspan="2">Accessibility</th>
+    </tr>
+    <tr>
+      <th class="ctr">DRAKES<br>Pred-activity</th>
+      <th class="ctr">SVDD DNA_evaluation<br><em>alternative training split</em></th>
+      <th class="ctr">DRAKES<br>ATAC_acc</th>
+      <th class="ctr">human-atac-catlas<br><em>different data source</em></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MDLM</td>
+      <td class="ctr">0.157 <span class="rank">(6)</span></td>
+      <td class="ctr">0.408 &plusmn; 0.013 <span class="rank">(6)</span></td>
+      <td class="ctr">0.329 <span class="rank">(6)</span></td>
+      <td class="ctr">0.050 &plusmn; 0.009 <span class="rank">(6)</span></td>
+    </tr>
+    <tr>
+      <td>MDLM+CG</td>
+      <td class="ctr">4.516 <span class="rank">(4)</span></td>
+      <td class="ctr">4.434 &plusmn; 0.097 <span class="rank">(4)</span></td>
+      <td class="ctr">0.472 <span class="rank">(4)</span></td>
+      <td class="ctr">0.459 &plusmn; 0.014 <span class="rank">(5)</span></td>
+    </tr>
+    <tr>
+      <td>DNA-Diff</td>
+      <td class="ctr">2.595 <span class="rank">(5)</span></td>
+      <td class="ctr">2.721 &plusmn; 0.046 <span class="rank">(5)</span></td>
+      <td class="ctr">0.688 <span class="rank">(3)</span></td>
+      <td class="ctr">0.517 &plusmn; 0.020 <span class="rank">(4)</span></td>
+    </tr>
+    <tr>
+      <td>DRAKES</td>
+      <td class="ctr">5.610 <span class="rank">(2)</span></td>
+      <td class="ctr">5.135 &plusmn; 0.076 <span class="rank">(2)</span></td>
+      <td class="ctr">0.804 <span class="rank">(1)</span></td>
+      <td class="ctr">0.829 &plusmn; 0.006 <span class="rank">(1)</span></td>
+    </tr>
+    <tr>
+      <td>SVDD</td>
+      <td class="ctr">6.830 <span class="rank">(1)</span></td>
+      <td class="ctr">6.187 &plusmn; 0.018 <span class="rank">(1)</span></td>
+      <td class="ctr">0.442 <span class="rank">(5)</span></td>
+      <td class="ctr">0.547 &plusmn; 0.010 <span class="rank">(3)</span></td>
+    </tr>
+    <tr class="hl">
+      <td><strong>LocoGen</strong></td>
+      <td class="ctr"><strong>4.679</strong> <span class="rank">(3)</span></td>
+      <td class="ctr"><strong>4.660 &plusmn; 0.011</strong> <span class="rank">(3)</span></td>
+      <td class="ctr"><strong>0.716</strong> <span class="rank">(2)</span></td>
+      <td class="ctr"><strong>0.729 &plusmn; 0.002</strong> <span class="rank">(2)</span></td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 1.</b> <strong>Robustness to oracle choice (HepG2).</strong> Beyond the DRAKES evaluation oracles used in the main text, we add two predictors that differ in training split and in data source, respectively. Rank across the six methods in parentheses; values are mean &plusmn; s.d. where seed replicates are available.</figcaption>
+        </figure>
     </div>
 
     <div class="subpanel" id="MbXe_ablation">
         <h2 class="section-title">Ablation</h2>
-        <p class="note">Fill in content here.</p>
+
+        <figure>
+          <img src="Reviewer_MbXe/Ablation/learnt_vs_random_mask.png"
+               alt="Learnt invariant mask versus count-matched random mask, with per-sequence Jaccard index">
+          <figcaption><b>Figure 4.</b> <strong>The learnt invariant region is not a random subset of positions.</strong> (a) For ten HepG2 enhancers, the learnt invariant mask (dark) and a count-matched random mask (purple) along the 200&#8239;bp window; the light band is the OOD-damped background. Both masks select the same number of positions, so any difference in the ablation is attributable to <em>which</em> positions are spared rather than how many. (b) Per-sequence Jaccard index between the two masks.</figcaption>
+        </figure>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-ablation" class="sweep">
+  <thead>
+    <tr>
+      <th class="ctr grouped" colspan="3">Component</th>
+      <th class="ctr grouped" colspan="2">Property</th>
+      <th class="ctr grouped" colspan="2">Novelty</th>
+      <th class="ctr grouped" colspan="2">Plausibility</th>
+    </tr>
+    <tr>
+      <th class="ctr">CG</th>
+      <th class="ctr">Glob.<br>OOD</th>
+      <th class="ctr">Loc. OOD<br>(mask)</th>
+      <th class="num">Pred-activity &uarr;</th>
+      <th class="num">ATAC_acc &uarr;</th>
+      <th class="num">Authenticity &uarr;</th>
+      <th class="num">Rarity (IQR) &uarr;</th>
+      <th class="num">|&Delta;Gini| &darr;</th>
+      <th class="num">|&Delta;hits| &darr;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="num">0.157&plusmn;0.024</td>
+      <td class="num">0.329&plusmn;0.198</td>
+      <td class="num">0.777&plusmn;0.033</td>
+      <td class="num">&minus;0.15&plusmn;0.03</td>
+      <td class="num">0.051&plusmn;0.006</td>
+      <td class="num">0.071&plusmn;0.001</td>
+    </tr>
+    <tr>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr"><span class="chk">&#10003;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="num">0.300&plusmn;0.028</td>
+      <td class="num">0.314&plusmn;0.008</td>
+      <td class="num">0.946&plusmn;0.002</td>
+      <td class="num">+0.46&plusmn;0.03</td>
+      <td class="num">0.246&plusmn;0.002</td>
+      <td class="num">0.167&plusmn;0.007</td>
+    </tr>
+    <tr>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr">Learnt</td>
+      <td class="num">0.309&plusmn;0.020</td>
+      <td class="num">0.311&plusmn;0.009</td>
+      <td class="num">0.947&plusmn;0.003</td>
+      <td class="num">+0.46&plusmn;0.03</td>
+      <td class="num">0.244&plusmn;0.004</td>
+      <td class="num">0.166&plusmn;0.006</td>
+    </tr>
+    <tr class="grp">
+      <td class="ctr"><span class="chk">&#10003;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="num">4.516&plusmn;0.151</td>
+      <td class="num">0.481&plusmn;0.022</td>
+      <td class="num">0.809&plusmn;0.014</td>
+      <td class="num">+0.22&plusmn;0.02</td>
+      <td class="num">0.169&plusmn;0.013</td>
+      <td class="num">0.043&plusmn;0.007</td>
+    </tr>
+    <tr>
+      <td class="ctr"><span class="chk">&#10003;</span></td>
+      <td class="ctr"><span class="chk">&#10003;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="num">4.608&plusmn;0.061</td>
+      <td class="num">0.691&plusmn;0.041</td>
+      <td class="num">0.887&plusmn;0.012</td>
+      <td class="num">+0.62&plusmn;0.11</td>
+      <td class="num">0.065&plusmn;0.021</td>
+      <td class="num">0.044&plusmn;0.015</td>
+    </tr>
+    <tr>
+      <td class="ctr"><span class="chk">&#10003;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr">Attack</td>
+      <td class="num">3.881&plusmn;0.038</td>
+      <td class="num">0.656&plusmn;0.004</td>
+      <td class="num">0.887&plusmn;0.012</td>
+      <td class="num">+0.64&plusmn;0.06</td>
+      <td class="num">0.025&plusmn;0.007</td>
+      <td class="num">0.083&plusmn;0.006</td>
+    </tr>
+    <tr class="hl">
+      <td class="ctr"><span class="chk">&#10003;</span></td>
+      <td class="ctr"><span class="off">&ndash;</span></td>
+      <td class="ctr">Learnt</td>
+      <td class="num"><strong>4.679&plusmn;0.021</strong></td>
+      <td class="num"><strong>0.716&plusmn;0.019</strong></td>
+      <td class="num"><strong>0.906&plusmn;0.006</strong></td>
+      <td class="num"><strong>+0.71&plusmn;0.00</strong></td>
+      <td class="num"><strong>0.055&plusmn;0.005</strong></td>
+      <td class="num"><strong>0.057&plusmn;0.003</strong></td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 2.</b> <strong>Locality ablation on HepG2.</strong> CG: classifier guidance. Glob. OOD: out-of-distribution control applied to all positions; Loc. OOD: OOD applied to mask-selected positions. The Loc. OOD mask is <em>Learnt</em>: the trained separator&rsquo;s invariant region (<i>M</i>&#8239;&ge;&#8239;0.5) is spared and the background is damped. <em>Attack</em> instead applies negative property guidance to that same learnt invariant region, keeping the background OOD identical to Full. <i>n</i>&#8239;=&#8239;3 seeds.</figcaption>
+        </figure>
     </div>
   </div>
 
@@ -258,19 +449,365 @@
   <div class="panel" id="panel-1JiD" style="padding-top:2rem;">
     <div class="subpanel active" id="1JiD_non-generative-baselines">
         <h2 class="section-title">Non-generative baselines</h2>
-        <p class="note">Fill in content here.</p>
+        <p class="note">Segmentation-and-shuffle baselines. Three independent criteria decide which positions to freeze &mdash; GC content, JASPAR motif hits, and predictor saliency &mdash; and each is swept over its strength parameter. Every table reports both shuffle schemes and carries LocoGen as a reference row.</p>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-r1" class="sweep">
+  <thead>
+    <tr>
+      <th>Baseline</th>
+      <th>Shuffle</th>
+      <th class="num">Pred-act. &uarr;</th>
+      <th class="num">ATAC<sub>acc</sub> &uarr;</th>
+      <th class="num">Authent. &uarr;</th>
+      <th class="num">Rarity (IQR)</th>
+      <th class="num">|&Delta;Gini| &darr;</th>
+      <th class="num">|&Delta;hits| &darr;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="grp">
+      <td rowspan="2">JASPAR PSSM</td>
+      <td>uniform random</td>
+      <td class="num">0.275&plusmn;0.007</td>
+      <td class="num">0.206&plusmn;0.004</td>
+      <td class="num">0.928&plusmn;0.011 <span class='dag'>&dagger;</span></td>
+      <td class="num">+0.25</td>
+      <td class="num">0.155&plusmn;0.003</td>
+      <td class="num">0.114&plusmn;0.005</td>
+    </tr>
+    <tr>
+      <td>dinuc.-preserving</td>
+      <td class="num">0.122&plusmn;0.011</td>
+      <td class="num">0.092&plusmn;0.001</td>
+      <td class="num">0.815&plusmn;0.012</td>
+      <td class="num">&minus;0.12</td>
+      <td class="num">0.069&plusmn;0.003</td>
+      <td class="num">0.066&plusmn;0.004</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">GC content</td>
+      <td>uniform random</td>
+      <td class="num">0.359&plusmn;0.056</td>
+      <td class="num">0.252&plusmn;0.005</td>
+      <td class="num">0.907&plusmn;0.008 <span class='dag'>&dagger;</span></td>
+      <td class="num">+0.13</td>
+      <td class="num">0.148&plusmn;0.007</td>
+      <td class="num">0.129&plusmn;0.004</td>
+    </tr>
+    <tr>
+      <td>dinuc.-preserving</td>
+      <td class="num">0.078&plusmn;0.004</td>
+      <td class="num">0.086&plusmn;0.004</td>
+      <td class="num">0.809&plusmn;0.007</td>
+      <td class="num">&minus;0.16</td>
+      <td class="num">0.054&plusmn;0.002</td>
+      <td class="num">0.076&plusmn;0.004</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">Saliency</td>
+      <td>uniform random</td>
+      <td class="num">0.288&plusmn;0.047</td>
+      <td class="num">0.249&plusmn;0.003</td>
+      <td class="num">0.961&plusmn;0.006 <span class='dag'>&dagger;</span></td>
+      <td class="num">+0.30</td>
+      <td class="num">0.167&plusmn;0.004</td>
+      <td class="num">0.138&plusmn;0.005</td>
+    </tr>
+    <tr>
+      <td>dinuc.-preserving</td>
+      <td class="num">0.199&plusmn;0.025</td>
+      <td class="num">0.129&plusmn;0.000</td>
+      <td class="num">0.840&plusmn;0.022</td>
+      <td class="num">&minus;0.03</td>
+      <td class="num">0.101&plusmn;0.004</td>
+      <td class="num">0.095&plusmn;0.004</td>
+    </tr>
+    <tr class="hl">
+      <td><strong>LocoGen</strong></td>
+      <td>&mdash;</td>
+      <td class="num"><strong>4.679</strong>&plusmn;0.017</td>
+      <td class="num"><strong>0.716</strong>&plusmn;0.251</td>
+      <td class="num">0.906&plusmn;0.006</td>
+      <td class="num"><strong>+0.71</strong></td>
+      <td class="num"><strong>0.055</strong></td>
+      <td class="num"><strong>0.057</strong></td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 3.</b> <strong>Non-generative segment-and-shuffle baselines at their strongest setting.</strong> HepG2, independent oracle, mean&plusmn;s.d. over 3 seeds, 640 sequences each. &dagger; marks arms at least as authentic as LocoGen.</figcaption>
+        </figure>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-gc" class="sweep">
+  <thead>
+    <tr>
+      <th>GC threshold</th>
+      <th>Frozen</th>
+      <th>Shuffle</th>
+      <th class="num">Pred-act. &uarr;</th>
+      <th class="num">Authent. &uarr;</th>
+      <th class="num">Rarity (IQR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.40</td>
+      <td rowspan="2">0.849</td>
+      <td>uniform random</td>
+      <td class="num">0.104&plusmn;0.007</td>
+      <td class="num">0.793&plusmn;0.001</td>
+      <td class="num">&minus;0.18</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.132&plusmn;0.000</td>
+      <td class="num">0.742&plusmn;0.008</td>
+      <td class="num">&minus;0.25</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.50</td>
+      <td rowspan="2">0.640</td>
+      <td>uniform random</td>
+      <td class="num">0.218&plusmn;0.011</td>
+      <td class="num">0.854&plusmn;0.009</td>
+      <td class="num">&minus;0.01</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.095&plusmn;0.017</td>
+      <td class="num">0.759&plusmn;0.006</td>
+      <td class="num">&minus;0.26</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.55</td>
+      <td rowspan="2">0.529</td>
+      <td>uniform random</td>
+      <td class="num">0.292&plusmn;0.014</td>
+      <td class="num">0.875&plusmn;0.013</td>
+      <td class="num">&minus;0.03</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.109&plusmn;0.020</td>
+      <td class="num">0.776&plusmn;0.011</td>
+      <td class="num">&minus;0.22</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.60</td>
+      <td rowspan="2">0.412</td>
+      <td>uniform random</td>
+      <td class="num">0.308&plusmn;0.007</td>
+      <td class="num">0.894&plusmn;0.003</td>
+      <td class="num">+0.08</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.107&plusmn;0.009</td>
+      <td class="num">0.790&plusmn;0.003</td>
+      <td class="num">&minus;0.20</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.65</td>
+      <td rowspan="2">0.301</td>
+      <td>uniform random</td>
+      <td class="num"><strong>0.359&plusmn;0.056</strong></td>
+      <td class="num"><u>0.907&plusmn;0.008</u></td>
+      <td class="num">+0.13</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.078&plusmn;0.004</td>
+      <td class="num">0.809&plusmn;0.007</td>
+      <td class="num">&minus;0.16</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.70</td>
+      <td rowspan="2">0.190</td>
+      <td>uniform random</td>
+      <td class="num">0.329&plusmn;0.058</td>
+      <td class="num"><u>0.927&plusmn;0.012</u></td>
+      <td class="num">+0.28</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.069&plusmn;0.025</td>
+      <td class="num">0.809&plusmn;0.009</td>
+      <td class="num">&minus;0.12</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">&ge; 0.80</td>
+      <td rowspan="2">0.046</td>
+      <td>uniform random</td>
+      <td class="num">0.305&plusmn;0.046</td>
+      <td class="num"><u>0.954&plusmn;0.006</u></td>
+      <td class="num">+0.46</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.053&plusmn;0.005</td>
+      <td class="num">0.810&plusmn;0.010</td>
+      <td class="num">&minus;0.12</td>
+    </tr>
+    <tr class="ref">
+      <td>LocoGen</td>
+      <td>&mdash;</td>
+      <td>&mdash;</td>
+      <td class="num"><strong>4.679&plusmn;0.017</strong></td>
+      <td class="num">0.906&plusmn;0.006</td>
+      <td class="num">+0.71</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 4.</b> <strong>GC-segmentation sweep (20&#8239;bp window GC threshold).</strong> Seven thresholds span frozen fractions from 0.85 to 0.05, sweeping the freeze amount as a continuous axis. Activity is non-monotone and peaks at &ge; 0.65 without ever exceeding 8% of LocoGen, while authenticity rises as the frozen fraction shrinks (0.79 &rarr; 0.95 for uniform random): replacing <em>more</em> of the scaffold makes the output more train-like, so no threshold buys activity and plausibility together.</figcaption>
+        </figure>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-jaspar" class="sweep">
+  <thead>
+    <tr>
+      <th>Detection FPR</th>
+      <th>Frozen</th>
+      <th>Shuffle</th>
+      <th class="num">Pred-act. &uarr;</th>
+      <th class="num">Authent. &uarr;</th>
+      <th class="num">Rarity (IQR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="grp">
+      <td rowspan="2">p &lt; 10<sup>&minus;3</sup></td>
+      <td rowspan="2">0.991</td>
+      <td>uniform random</td>
+      <td class="num">0.151&plusmn;0.006</td>
+      <td class="num">0.725&plusmn;0.000</td>
+      <td class="num">&minus;0.24</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.146&plusmn;0.001</td>
+      <td class="num">0.728&plusmn;0.001</td>
+      <td class="num">&minus;0.27</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">p &lt; 10<sup>&minus;5</sup></td>
+      <td rowspan="2">0.245</td>
+      <td>uniform random</td>
+      <td class="num"><strong>0.275&plusmn;0.007</strong></td>
+      <td class="num"><u>0.928&plusmn;0.011</u></td>
+      <td class="num">+0.25</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.122&plusmn;0.011</td>
+      <td class="num">0.815&plusmn;0.012</td>
+      <td class="num">&minus;0.12</td>
+    </tr>
+    <tr class="ref">
+      <td>LocoGen</td>
+      <td>&mdash;</td>
+      <td>&mdash;</td>
+      <td class="num"><strong>4.679&plusmn;0.017</strong></td>
+      <td class="num">0.906&plusmn;0.006</td>
+      <td class="num">+0.71</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 5.</b> <strong>Motif-scan sweep (JASPAR PSSM detection threshold).</strong> Lowering the per-motif false-positive rate from 10<sup>&minus;3</sup> to 10<sup>&minus;5</sup> shrinks the frozen footprint from 99% to 25%, leaving a background that can actually be replaced. Denser motif fixing does <em>not</em> buy activity: at p &lt; 10<sup>&minus;3</sup> only ~2&#8239;bp per sequence remain replaceable, so the output is nearly a copy of the scaffold and authenticity drops to 0.73 as well.</figcaption>
+        </figure>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-sal" class="sweep">
+  <thead>
+    <tr>
+      <th>Frozen fraction</th>
+      <th>Frozen</th>
+      <th>Shuffle</th>
+      <th class="num">Pred-act. &uarr;</th>
+      <th class="num">Authent. &uarr;</th>
+      <th class="num">Rarity (IQR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="grp">
+      <td rowspan="2">top 0.60</td>
+      <td rowspan="2">0.600</td>
+      <td>uniform random</td>
+      <td class="num">0.223&plusmn;0.028</td>
+      <td class="num">0.906&plusmn;0.008</td>
+      <td class="num">+0.13</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.216&plusmn;0.012</td>
+      <td class="num">0.844&plusmn;0.006</td>
+      <td class="num">+0.02</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">top 0.40</td>
+      <td rowspan="2">0.400</td>
+      <td>uniform random</td>
+      <td class="num">0.255&plusmn;0.025</td>
+      <td class="num"><u>0.942&plusmn;0.005</u></td>
+      <td class="num">+0.26</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.230&plusmn;0.019</td>
+      <td class="num">0.870&plusmn;0.016</td>
+      <td class="num">+0.04</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">top 0.25</td>
+      <td rowspan="2">0.250</td>
+      <td>uniform random</td>
+      <td class="num"><strong>0.288&plusmn;0.047</strong></td>
+      <td class="num"><u>0.961&plusmn;0.006</u></td>
+      <td class="num">+0.30</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.199&plusmn;0.025</td>
+      <td class="num">0.840&plusmn;0.022</td>
+      <td class="num">&minus;0.03</td>
+    </tr>
+    <tr class="grp">
+      <td rowspan="2">top 0.10</td>
+      <td rowspan="2">0.100</td>
+      <td>uniform random</td>
+      <td class="num">0.261&plusmn;0.014</td>
+      <td class="num"><u>0.964&plusmn;0.005</u></td>
+      <td class="num">+0.33</td>
+    </tr>
+    <tr>
+      <td>dinucleotide-preserving</td>
+      <td class="num">0.119&plusmn;0.009</td>
+      <td class="num">0.837&plusmn;0.011</td>
+      <td class="num">&minus;0.07</td>
+    </tr>
+    <tr class="ref">
+      <td>LocoGen</td>
+      <td>&mdash;</td>
+      <td>&mdash;</td>
+      <td class="num"><strong>4.679&plusmn;0.017</strong></td>
+      <td class="num">0.906&plusmn;0.006</td>
+      <td class="num">+0.71</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 6.</b> <strong>Saliency-segmentation sweep (fraction of top-saliency positions frozen).</strong> Positions are ranked by |&part;&#8239;activity/&part; x| summed over A/C/G/T, using the <em>same</em> activity predictor whose gradient guides LocoGen, then the top fraction is frozen. Giving the baseline LocoGen's own guidance signal does not close the gap: activity peaks at 0.29 (top 0.25), i.e. 6% of LocoGen, while authenticity reaches 0.96 &mdash; the highest of any arm in this study and above LocoGen's 0.91. Saliency-selected regions carry no GC bias (frozen GC 0.450 vs background 0.450), so this is a genuinely independent third criterion rather than a proxy for GC content.</figcaption>
+        </figure>
     </div>
   </div>
 
-  <!-- ===================== Revised manuscript ===================== -->
-  <div class="panel" id="panel-manuscript" style="padding-top:2rem;">
-    <div class="pdf-wrap">
-      <iframe data-src="revised_manuscript.pdf" title="Revised Manuscript"></iframe>
-    </div>
-    <p class="pdf-fallback">
-      If the PDF doesn't display, <a href="revised_manuscript.pdf" target="_blank" rel="noopener">open it in a new tab</a>.
-    </p>
-  </div>
 </main>
 
 <script>
