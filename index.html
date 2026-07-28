@@ -246,7 +246,7 @@
               <iframe data-src="Reviewer_MbXe/Hyperparameter_sweep/three_axis_interactive.html"
                       title="LOCOGEN three-axis operating surface"></iframe>
             </div>
-            <figcaption><b>Figure 1.</b> Property / Authenticity / Plausibility three-axis interactive plot &mdash; drag to rotate, scroll to zoom.</figcaption>
+            <figcaption><b>Figure 1.</b> Property / Authenticity / Plausibility three-axis interactive plot &mdash; drag to rotate, scroll to zoom. DRAKES fine-tunes the model weights for a fixed reward rather than steering generation at inference time, so it is shown as a retraining reference rather than a comparable operating point.</figcaption>
           </figure>
           <figure>
             <img src="Reviewer_MbXe/Hyperparameter_sweep/balanced_score.jpg" alt="Balanced three-axis score bar chart">
@@ -255,7 +255,7 @@
         </div>
         <figure>
           <img src="Reviewer_MbXe/Hyperparameter_sweep/sweep_metrics_table.jpg" alt="Hyperparameter sweep metrics table">
-          <figcaption><b>Figure 3.</b> Evaluation metrics across the sweep, one row per hyperparameter setting. The value in parentheses is each method&rsquo;s strength setting: &lambda; = OOD/calibration strength (ood_lambda); r = property-pull ratio alpha_ratio at &lambda;=0.7 (paper default r=3.0 = the &lambda;=0.7 row; r=1/2 are lower-pull variants); cap = MDLM+CG classifier-guidance &alpha;-cap (alpha_cap); M = SVDD number of candidates per step (tweedie/SVDD-PM); tds &alpha; = SVDD-TDS importance-resampling temperature; gs = DNA-Diff classifier-free guidance scale (cond_weight; author base 1.0).</figcaption>
+          <figcaption><b>Figure 3.</b> Evaluation metrics across the sweep, one row per hyperparameter setting. The value in parentheses is each method&rsquo;s strength setting: &lambda; = OOD/calibration strength (ood_lambda); r = property-pull ratio alpha_ratio at &lambda;=0.7 (paper default r=3.0 = the &lambda;=0.7 row; r=1/2 are lower-pull variants); cap = MDLM+CG classifier-guidance &alpha;-cap (alpha_cap); M = SVDD number of candidates per step (tweedie/SVDD-PM); tds &alpha; = SVDD-TDS importance-resampling temperature; gs = DNA-Diff classifier-free guidance scale (cond_weight; author base 1.0). DRAKES fine-tunes the model weights for a fixed reward rather than steering generation at inference time, so it is shown as a retraining reference rather than a comparable operating point.</figcaption>
         </figure>
     </div>
 
