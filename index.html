@@ -324,7 +324,137 @@
   </tbody>
 </table>
           </div>
-          <figcaption><b>Table 1.</b> <strong>Robustness to oracle choice (HepG2).</strong> Beyond the DRAKES evaluation oracles used in the main text, we add two predictors that differ in training split and in data source, respectively. Rank across the six methods in parentheses; values are mean &plusmn; s.d. where seed replicates are available.</figcaption>
+          <figcaption><b>Table 1a.</b> <strong>Robustness to oracle choice (HepG2).</strong> Beyond the DRAKES evaluation oracles used in the main text, we add two predictors that differ in training split and in data source, respectively. Rank across the six methods in parentheses; values are mean &plusmn; s.d. where seed replicates are available.</figcaption>
+        </figure>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-oracle-k562" class="sweep">
+  <thead>
+    <tr>
+      <th rowspan="2">Method</th>
+      <th class="ctr grouped" colspan="2">Activity</th>
+      <th class="ctr grouped" colspan="2">Accessibility</th>
+    </tr>
+    <tr>
+      <th class="ctr">DRAKES<br>Pred-activity</th>
+      <th class="ctr">SVDD DNA_evaluation<br><em>alternative training split</em></th>
+      <th class="ctr">DRAKES<br>ATAC_acc</th>
+      <th class="ctr">human-atac-catlas<br><em>different data source</em></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MDLM</td>
+      <td class="ctr">0.106 <span class="rank">(6)</span></td>
+      <td class="ctr">0.381 &plusmn; 0.031 <span class="rank">(6)</span></td>
+      <td class="ctr">0.367 <span class="rank">(6)</span></td>
+      <td class="ctr">0.055 &plusmn; 0.006 <span class="rank">(6)</span></td>
+    </tr>
+    <tr>
+      <td>MDLM+CG</td>
+      <td class="ctr">6.433 <span class="rank">(3)</span></td>
+      <td class="ctr">6.191 &plusmn; 0.042 <span class="rank">(2)</span></td>
+      <td class="ctr">0.852 <span class="rank">(4)</span></td>
+      <td class="ctr">0.688 &plusmn; 0.022 <span class="rank">(4)</span></td>
+    </tr>
+    <tr>
+      <td>DNA-Diff</td>
+      <td class="ctr">2.979 <span class="rank">(5)</span></td>
+      <td class="ctr">3.038 &plusmn; 0.036 <span class="rank">(5)</span></td>
+      <td class="ctr">0.479 <span class="rank">(5)</span></td>
+      <td class="ctr">0.359 &plusmn; 0.009 <span class="rank">(5)</span></td>
+    </tr>
+    <tr>
+      <td>DRAKES</td>
+      <td class="ctr">6.493 <span class="rank">(2)</span></td>
+      <td class="ctr">6.031 &plusmn; 0.114 <span class="rank">(4)</span></td>
+      <td class="ctr">0.863 <span class="rank">(3)</span></td>
+      <td class="ctr">0.837 &plusmn; 0.005 <span class="rank">(3)</span></td>
+    </tr>
+    <tr>
+      <td>SVDD</td>
+      <td class="ctr">9.479 <span class="rank">(1)</span></td>
+      <td class="ctr">8.490 &plusmn; 0.064 <span class="rank">(1)</span></td>
+      <td class="ctr">0.928 <span class="rank">(1)</span></td>
+      <td class="ctr">0.899 &plusmn; 0.005 <span class="rank">(1)</span></td>
+    </tr>
+    <tr class="hl">
+      <td><strong>LocoGen</strong></td>
+      <td class="ctr"><strong>6.285</strong> <span class="rank">(4)</span></td>
+      <td class="ctr"><strong>6.085 &plusmn; 0.014</strong> <span class="rank">(3)</span></td>
+      <td class="ctr"><strong>0.900</strong> <span class="rank">(2)</span></td>
+      <td class="ctr"><strong>0.846 &plusmn; 0.002</strong> <span class="rank">(2)</span></td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 1b.</b> <strong>Robustness to oracle choice (K562).</strong> Same four oracles and conventions as Table 1a; rank across the six methods in parentheses, values are mean &plusmn; s.d. where seed replicates are available.</figcaption>
+        </figure>
+
+        <figure class="table-figure">
+          <div class="table-scroll">
+<table id="tbl-oracle-sknsh" class="sweep">
+  <thead>
+    <tr>
+      <th rowspan="2">Method</th>
+      <th class="ctr grouped" colspan="2">Activity</th>
+      <th class="ctr grouped" colspan="2">Accessibility</th>
+    </tr>
+    <tr>
+      <th class="ctr">DRAKES<br>Pred-activity</th>
+      <th class="ctr">SVDD DNA_evaluation<br><em>alternative training split</em></th>
+      <th class="ctr">DRAKES<br>ATAC_acc</th>
+      <th class="ctr">human-atac-catlas<br><em>different data source</em></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MDLM</td>
+      <td class="ctr">0.112 <span class="rank">(5)</span></td>
+      <td class="ctr">0.340 &plusmn; 0.033 <span class="rank">(6)</span></td>
+      <td class="ctr">0.391 <span class="rank">(4)</span></td>
+      <td class="ctr">0.030 &plusmn; 0.005 <span class="rank">(6)</span></td>
+    </tr>
+    <tr>
+      <td>MDLM+CG</td>
+      <td class="ctr">5.047 <span class="rank">(4)</span></td>
+      <td class="ctr">4.970 &plusmn; 0.104 <span class="rank">(4)</span></td>
+      <td class="ctr">0.429 <span class="rank">(3)</span></td>
+      <td class="ctr">0.377 &plusmn; 0.020 <span class="rank">(3)</span></td>
+    </tr>
+    <tr>
+      <td>DNA-Diff</td>
+      <td class="ctr">0.033 <span class="rank">(6)</span></td>
+      <td class="ctr">0.720 &plusmn; 0.021 <span class="rank">(5)</span></td>
+      <td class="ctr">0.079 <span class="rank">(6)</span></td>
+      <td class="ctr">0.040 &plusmn; 0.002 <span class="rank">(5)</span></td>
+    </tr>
+    <tr>
+      <td>DRAKES</td>
+      <td class="ctr">6.992 <span class="rank">(2)</span></td>
+      <td class="ctr">6.132 &plusmn; 0.153 <span class="rank">(2)</span></td>
+      <td class="ctr">0.879 <span class="rank">(1)</span></td>
+      <td class="ctr">0.839 &plusmn; 0.007 <span class="rank">(1)</span></td>
+    </tr>
+    <tr>
+      <td>SVDD</td>
+      <td class="ctr">7.989 <span class="rank">(1)</span></td>
+      <td class="ctr">6.714 &plusmn; 0.103 <span class="rank">(1)</span></td>
+      <td class="ctr">0.356 <span class="rank">(5)</span></td>
+      <td class="ctr">0.192 &plusmn; 0.004 <span class="rank">(4)</span></td>
+    </tr>
+    <tr class="hl">
+      <td><strong>LocoGen</strong></td>
+      <td class="ctr"><strong>5.304</strong> <span class="rank">(3)</span></td>
+      <td class="ctr"><strong>5.294 &plusmn; 0.156</strong> <span class="rank">(3)</span></td>
+      <td class="ctr"><strong>0.747</strong> <span class="rank">(2)</span></td>
+      <td class="ctr"><strong>0.629 &plusmn; 0.020</strong> <span class="rank">(2)</span></td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <figcaption><b>Table 1c.</b> <strong>Robustness to oracle choice (SK-N-SH).</strong> Same four oracles and conventions as Table 1a; rank across the six methods in parentheses, values are mean &plusmn; s.d. where seed replicates are available.</figcaption>
         </figure>
     </div>
 
@@ -532,8 +662,8 @@
       <td class="num"><strong>0.716</strong>&plusmn;0.251</td>
       <td class="num">0.906&plusmn;0.006</td>
       <td class="num"><strong>+0.71</strong></td>
-      <td class="num"><strong>0.055</strong></td>
-      <td class="num"><strong>0.057</strong></td>
+      <td class="num"><strong>0.055</strong>&plusmn;0.005</td>
+      <td class="num"><strong>0.057</strong>&plusmn;0.003</td>
     </tr>
   </tbody>
 </table>
@@ -551,7 +681,7 @@
       <th>Shuffle</th>
       <th class="num">Pred-act. &uarr;</th>
       <th class="num">Authent. &uarr;</th>
-      <th class="num">Rarity (IQR)</th>
+      <th class="num">|&Delta;Gini| &darr;</th>
     </tr>
   </thead>
   <tbody>
@@ -561,13 +691,13 @@
       <td>uniform random</td>
       <td class="num">0.104&plusmn;0.007</td>
       <td class="num">0.793&plusmn;0.001</td>
-      <td class="num">&minus;0.18</td>
+      <td class="num">0.101&plusmn;0.003</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.132&plusmn;0.000</td>
       <td class="num">0.742&plusmn;0.008</td>
-      <td class="num">&minus;0.25</td>
+      <td class="num">0.038&plusmn;0.000 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr class="grp">
       <td rowspan="2">&ge; 0.50</td>
@@ -575,13 +705,13 @@
       <td>uniform random</td>
       <td class="num">0.218&plusmn;0.011</td>
       <td class="num">0.854&plusmn;0.009</td>
-      <td class="num">&minus;0.01</td>
+      <td class="num">0.103&plusmn;0.005</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.095&plusmn;0.017</td>
       <td class="num">0.759&plusmn;0.006</td>
-      <td class="num">&minus;0.26</td>
+      <td class="num">0.043&plusmn;0.002 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr class="grp">
       <td rowspan="2">&ge; 0.55</td>
@@ -589,13 +719,13 @@
       <td>uniform random</td>
       <td class="num">0.292&plusmn;0.014</td>
       <td class="num">0.875&plusmn;0.013</td>
-      <td class="num">&minus;0.03</td>
+      <td class="num">0.112&plusmn;0.004</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.109&plusmn;0.020</td>
       <td class="num">0.776&plusmn;0.011</td>
-      <td class="num">&minus;0.22</td>
+      <td class="num">0.045&plusmn;0.003 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr class="grp">
       <td rowspan="2">&ge; 0.60</td>
@@ -603,55 +733,55 @@
       <td>uniform random</td>
       <td class="num">0.308&plusmn;0.007</td>
       <td class="num">0.894&plusmn;0.003</td>
-      <td class="num">+0.08</td>
+      <td class="num">0.128&plusmn;0.005</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.107&plusmn;0.009</td>
       <td class="num">0.790&plusmn;0.003</td>
-      <td class="num">&minus;0.20</td>
+      <td class="num">0.047&plusmn;0.001 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr class="grp">
       <td rowspan="2">&ge; 0.65</td>
       <td rowspan="2">0.301</td>
       <td>uniform random</td>
       <td class="num"><strong>0.359&plusmn;0.056</strong></td>
-      <td class="num"><u>0.907&plusmn;0.008</u></td>
-      <td class="num">+0.13</td>
+      <td class="num">0.907&plusmn;0.008 <span class="dag">&dagger;</span></td>
+      <td class="num">0.148&plusmn;0.007</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.078&plusmn;0.004</td>
       <td class="num">0.809&plusmn;0.007</td>
-      <td class="num">&minus;0.16</td>
+      <td class="num">0.054&plusmn;0.002 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr class="grp">
       <td rowspan="2">&ge; 0.70</td>
       <td rowspan="2">0.190</td>
       <td>uniform random</td>
       <td class="num">0.329&plusmn;0.058</td>
-      <td class="num"><u>0.927&plusmn;0.012</u></td>
-      <td class="num">+0.28</td>
+      <td class="num">0.927&plusmn;0.012 <span class="dag">&dagger;</span></td>
+      <td class="num">0.179&plusmn;0.004</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.069&plusmn;0.025</td>
       <td class="num">0.809&plusmn;0.009</td>
-      <td class="num">&minus;0.12</td>
+      <td class="num">0.062&plusmn;0.001</td>
     </tr>
     <tr class="grp">
       <td rowspan="2">&ge; 0.80</td>
       <td rowspan="2">0.046</td>
       <td>uniform random</td>
       <td class="num">0.305&plusmn;0.046</td>
-      <td class="num"><u>0.954&plusmn;0.006</u></td>
-      <td class="num">+0.46</td>
+      <td class="num">0.954&plusmn;0.006 <span class="dag">&dagger;</span></td>
+      <td class="num">0.207&plusmn;0.002</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.053&plusmn;0.005</td>
       <td class="num">0.810&plusmn;0.010</td>
-      <td class="num">&minus;0.12</td>
+      <td class="num">0.071&plusmn;0.004</td>
     </tr>
     <tr class="ref">
       <td>LocoGen</td>
@@ -659,7 +789,7 @@
       <td>&mdash;</td>
       <td class="num"><strong>4.679&plusmn;0.017</strong></td>
       <td class="num">0.906&plusmn;0.006</td>
-      <td class="num">+0.71</td>
+      <td class="num">0.055&plusmn;0.005</td>
     </tr>
   </tbody>
 </table>
@@ -677,7 +807,7 @@
       <th>Shuffle</th>
       <th class="num">Pred-act. &uarr;</th>
       <th class="num">Authent. &uarr;</th>
-      <th class="num">Rarity (IQR)</th>
+      <th class="num">|&Delta;Gini| &darr;</th>
     </tr>
   </thead>
   <tbody>
@@ -687,27 +817,27 @@
       <td>uniform random</td>
       <td class="num">0.151&plusmn;0.006</td>
       <td class="num">0.725&plusmn;0.000</td>
-      <td class="num">&minus;0.24</td>
+      <td class="num">0.033&plusmn;0.000 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.146&plusmn;0.001</td>
       <td class="num">0.728&plusmn;0.001</td>
-      <td class="num">&minus;0.27</td>
+      <td class="num">0.033&plusmn;0.000 <span class="dag">&Dagger;</span></td>
     </tr>
     <tr class="grp">
       <td rowspan="2">p &lt; 10<sup>&minus;5</sup></td>
       <td rowspan="2">0.245</td>
       <td>uniform random</td>
       <td class="num"><strong>0.275&plusmn;0.007</strong></td>
-      <td class="num"><u>0.928&plusmn;0.011</u></td>
-      <td class="num">+0.25</td>
+      <td class="num">0.928&plusmn;0.011 <span class="dag">&dagger;</span></td>
+      <td class="num">0.155&plusmn;0.003</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.122&plusmn;0.011</td>
       <td class="num">0.815&plusmn;0.012</td>
-      <td class="num">&minus;0.12</td>
+      <td class="num">0.069&plusmn;0.003</td>
     </tr>
     <tr class="ref">
       <td>LocoGen</td>
@@ -715,7 +845,7 @@
       <td>&mdash;</td>
       <td class="num"><strong>4.679&plusmn;0.017</strong></td>
       <td class="num">0.906&plusmn;0.006</td>
-      <td class="num">+0.71</td>
+      <td class="num">0.055&plusmn;0.005</td>
     </tr>
   </tbody>
 </table>
@@ -729,77 +859,71 @@
   <thead>
     <tr>
       <th>Frozen fraction</th>
-      <th>Frozen</th>
       <th>Shuffle</th>
       <th class="num">Pred-act. &uarr;</th>
       <th class="num">Authent. &uarr;</th>
-      <th class="num">Rarity (IQR)</th>
+      <th class="num">|&Delta;Gini| &darr;</th>
     </tr>
   </thead>
   <tbody>
     <tr class="grp">
       <td rowspan="2">top 0.60</td>
-      <td rowspan="2">0.600</td>
       <td>uniform random</td>
       <td class="num">0.223&plusmn;0.028</td>
       <td class="num">0.906&plusmn;0.008</td>
-      <td class="num">+0.13</td>
+      <td class="num">0.145&plusmn;0.001</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.216&plusmn;0.012</td>
       <td class="num">0.844&plusmn;0.006</td>
-      <td class="num">+0.02</td>
+      <td class="num">0.104&plusmn;0.002</td>
     </tr>
     <tr class="grp">
       <td rowspan="2">top 0.40</td>
-      <td rowspan="2">0.400</td>
       <td>uniform random</td>
       <td class="num">0.255&plusmn;0.025</td>
-      <td class="num"><u>0.942&plusmn;0.005</u></td>
-      <td class="num">+0.26</td>
+      <td class="num">0.942&plusmn;0.005 <span class="dag">&dagger;</span></td>
+      <td class="num">0.157&plusmn;0.005</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.230&plusmn;0.019</td>
       <td class="num">0.870&plusmn;0.016</td>
-      <td class="num">+0.04</td>
+      <td class="num">0.105&plusmn;0.001</td>
     </tr>
     <tr class="grp">
       <td rowspan="2">top 0.25</td>
-      <td rowspan="2">0.250</td>
       <td>uniform random</td>
       <td class="num"><strong>0.288&plusmn;0.047</strong></td>
-      <td class="num"><u>0.961&plusmn;0.006</u></td>
-      <td class="num">+0.30</td>
+      <td class="num">0.961&plusmn;0.006 <span class="dag">&dagger;</span></td>
+      <td class="num">0.167&plusmn;0.004</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.199&plusmn;0.025</td>
       <td class="num">0.840&plusmn;0.022</td>
-      <td class="num">&minus;0.03</td>
+      <td class="num">0.101&plusmn;0.004</td>
     </tr>
     <tr class="grp">
       <td rowspan="2">top 0.10</td>
-      <td rowspan="2">0.100</td>
       <td>uniform random</td>
       <td class="num">0.261&plusmn;0.014</td>
-      <td class="num"><u>0.964&plusmn;0.005</u></td>
-      <td class="num">+0.33</td>
+      <td class="num">0.964&plusmn;0.005 <span class="dag">&dagger;</span></td>
+      <td class="num">0.171&plusmn;0.008</td>
     </tr>
     <tr>
       <td>dinucleotide-preserving</td>
       <td class="num">0.119&plusmn;0.009</td>
       <td class="num">0.837&plusmn;0.011</td>
-      <td class="num">&minus;0.07</td>
+      <td class="num">0.083&plusmn;0.005</td>
     </tr>
     <tr class="ref">
       <td>LocoGen</td>
       <td>&mdash;</td>
-      <td>&mdash;</td>
       <td class="num"><strong>4.679&plusmn;0.017</strong></td>
       <td class="num">0.906&plusmn;0.006</td>
-      <td class="num">+0.71</td>
+      <td class="num">0.055&plusmn;0.005</td>
     </tr>
   </tbody>
 </table>
