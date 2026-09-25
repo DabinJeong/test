@@ -50,64 +50,12 @@
   main{max-width:1000px;margin:0 auto;padding:0 2rem 4rem;}
 
   /* ---- Level 1 tabs: reviewers ---- */
-  nav.tabs-l1{
-    display:flex;
-    gap:0.25rem;
-    margin-top:1.5rem;
-    border-bottom:1px solid var(--line);
-    flex-wrap:wrap;
-  }
-  nav.tabs-l1 button{
-    font-family:"IBM Plex Mono",Menlo,Consolas,monospace;
-    font-size:0.82rem;
-    background:none;
-    border:none;
-    padding:0.7rem 1.1rem;
-    cursor:pointer;
-    color:var(--ink-soft);
-    border-bottom:2px solid transparent;
-    margin-bottom:-1px;
-    transition:color .15s ease, border-color .15s ease;
-  }
-  nav.tabs-l1 button:hover{color:var(--ink);}
-  nav.tabs-l1 button.active{
-    color:var(--accent);
-    border-bottom-color:var(--accent);
-    font-weight:600;
-  }
 
   /* ---- Level 2 tabs: topics within a reviewer ---- */
-  nav.tabs-l2{
-    display:flex;
-    gap:0.5rem;
-    flex-wrap:wrap;
-    margin:1.5rem 0 2rem;
-  }
-  nav.tabs-l2 button{
-    font-family:"IBM Plex Mono",Menlo,Consolas,monospace;
-    font-size:0.76rem;
-    background:var(--code-bg);
-    border:1px solid var(--line);
-    border-radius:999px;
-    padding:0.35rem 0.85rem;
-    cursor:pointer;
-    color:var(--ink-soft);
-    transition:background .15s ease, color .15s ease, border-color .15s ease;
-  }
-  nav.tabs-l2 button:hover{border-color:var(--accent);}
-  nav.tabs-l2 button.active{
-    background:var(--accent);
-    border-color:var(--accent);
-    color:#fff;
-    font-weight:600;
-  }
 
-  .panel{display:none;}
-  .panel.active{display:block; animation:fade .25s ease;}
-  @keyframes fade{from{opacity:0;transform:translateY(4px);} to{opacity:1;transform:translateY(0);}}
+  .panel{display:block;}
 
-  .subpanel{display:none;}
-  .subpanel.active{display:block;}
+  .subpanel{display:block;}
 
   figure{margin:1.75rem 0;}
   figure img{
@@ -154,38 +102,6 @@
     border:1px solid var(--line);
     background:#fff;
   }
-  .pdf-wrap iframe{
-    width:100%;
-    height:85vh;
-    border:none;
-    display:block;
-  }
-  .figure-row{
-    display:flex;
-    gap:1.5rem;
-    margin:1.75rem 0;
-    align-items:flex-start;
-  }
-  .figure-row figure{
-    flex:1 1 0;
-    min-width:0;
-    margin:0;
-  }
-  .figure-row .pdf-wrap{
-    margin-top:0;
-  }
-  .figure-row .pdf-wrap iframe{
-    height:420px;
-  }
-  .figure-row figure img{
-    height:420px;
-    width:100%;
-    object-fit:contain;
-    background:#fff;
-  }
-  @media (max-width:720px){
-    .figure-row{flex-direction:column;}
-  }
   ::selection{background:var(--accent-soft);}
 
 
@@ -213,54 +129,86 @@
   table.sweep u{text-decoration-thickness:1px; text-underline-offset:3px;}
 
   /* every panel is real markup, so the page still reads with scripts off */
-  .no-js .panel,
-  .no-js .subpanel {display:block;}
-  .no-js nav.tabs-l1,
-  .no-js nav.tabs-l2 {display:none;}
+
+  nav.toc{
+    margin:1.5rem 0 2.25rem;
+    padding:0.9rem 1.1rem;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.55);
+  }
+  nav.toc b{font-size:0.82rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);}
+  nav.toc ol{margin:0.5rem 0 0; padding-left:1.2rem;}
+  nav.toc ol ol{margin:0.2rem 0 0.4rem;}
+  nav.toc li{margin:0.15rem 0;}
+  nav.toc a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
+  nav.toc a:hover{border-bottom-color:var(--accent);}
+  h2.reviewer-title{
+    font-size:1.3rem;
+    margin:3.25rem 0 0.35rem;
+    padding-bottom:0.3rem;
+    border-bottom:2px solid var(--ink);
+  }
+  h3.section-title{
+    font-size:1.05rem;
+    margin:2.25rem 0 0.25rem;
+  }
+  .panel + .panel{margin-top:1rem;}
+  p.fig-source{
+    color:var(--ink-soft);
+    font-size:0.82rem;
+    margin:0.35rem 0 0;
+  }
+  p.fig-source code{font-size:0.78rem;}
 </style>
 </head>
-<body class="no-js">
+<body>
 
 <header>
   <h1>Rebuttal &mdash; Supplementary Materials</h1>
 </header>
 
 <main>
-  <nav class="tabs-l1">
-    <button class="active" data-panel="MbXe">Reviewer MbXe</button>
-    <button data-panel="1JiD">Reviewer 1JiD</button>
+  <nav class="toc">
+    <b>Contents</b>
+    <ol>
+      <li><a href="#panel-MbXe">Reviewer MbXe</a>
+        <ol>
+          <li><a href="#MbXe_hyperparameter-sweep">Hyperparameter sweep</a></li>
+          <li><a href="#MbXe_robustness">Robustness</a></li>
+          <li><a href="#MbXe_ablation">Effect of localization</a></li>
+        </ol>
+      </li>
+      <li><a href="#panel-1JiD">Reviewer 1JiD</a>
+        <ol><li><a href="#1JiD_non-generative-baselines">Non-generative baselines</a></li></ol>
+      </li>
+    </ol>
   </nav>
 
   <!-- ===================== Reviewer MbXe ===================== -->
-  <div class="panel active" id="panel-MbXe">
-    <nav class="tabs-l2">
-      <button class="active" data-sub="MbXe_hyperparameter-sweep">Hyperparameter sweep</button>
-      <button data-sub="MbXe_robustness">Robustness</button>
-      <button data-sub="MbXe_ablation">Effect of localization</button>
-    </nav>
+  <div class="panel" id="panel-MbXe">
+      <h2 class="reviewer-title">Reviewer MbXe</h2>
 
-    <div class="subpanel active" id="MbXe_hyperparameter-sweep">
-        <div class="figure-row">
-          <figure>
-            <div class="pdf-wrap">
-              <iframe data-src="Reviewer_MbXe/Hyperparameter_sweep/three_axis_interactive.html"
-                      title="LOCOGEN three-axis operating surface"></iframe>
-            </div>
-            <figcaption><b>Figure 1.</b> Property / Novelty / Plausibility three-axis interactive plot &mdash; drag to rotate, scroll to zoom. DRAKES fine-tunes the model weights for a fixed reward rather than steering generation at inference time, so it is shown as a retraining reference rather than a comparable operating point.</figcaption>
-          </figure>
-          <figure>
-            <img src="Reviewer_MbXe/Hyperparameter_sweep/balanced_score.jpg" alt="Balanced three-axis score bar chart">
-            <figcaption><b>Figure 2.</b> Balanced score (P&middot;N&middot;Pl)<sup>1/3</sup> &mdash; LOCOGEN achieves the highest balanced score across sweep points.</figcaption>
-          </figure>
-        </div>
+    <div class="subpanel" id="MbXe_hyperparameter-sweep">
+        <h3 class="section-title">Hyperparameter sweep</h3>
         <figure>
-          <img src="Reviewer_MbXe/Hyperparameter_sweep/sweep_metrics_table.jpg" alt="Hyperparameter sweep metrics table">
+          <img src="{{artifact:art_0076ee9a-da65-407d-b150-526d3b3e54e0}}"
+               alt="Three-axis operating surface: property, novelty (authenticity) and plausibility for every sweep setting">
+          <figcaption><b>Figure 1.</b> Property / Novelty / Plausibility three-axis operating surface, viewed at a fixed camera (azimuth 315&deg;, elevation 22&deg;). Higher is better on all three axes; the thin stem under each point drops to the plausibility floor as a depth cue. Only LOCOGEN reaches authenticity &geq; 0.87 together with plausibility &geq; &minus;0.06 &mdash; all 5 of its settings do, and no configuration of any other method does. Per-setting values are in Figure 3. DRAKES fine-tunes the model weights for a fixed reward rather than steering generation at inference time, so it is shown as a retraining reference rather than a comparable operating point.</figcaption>
+          <p class="fig-source">Rotatable version: <code>Reviewer_MbXe/Hyperparameter_sweep/three_axis_interactive.html</code>
+            (needs a JavaScript-enabled viewer; this page is script-free by design).</p>
+        </figure>
+        <figure>
+          <img src="Reviewer_MbXe/Hyperparameter_sweep/balanced_score.png" alt="Balanced three-axis score bar chart">
+          <figcaption><b>Figure 2.</b> Balanced score (P&middot;N&middot;Pl)<sup>1/3</sup> &mdash; LOCOGEN achieves the highest balanced score across sweep points.</figcaption>
+        </figure>
+        <figure>
+          <img src="Reviewer_MbXe/Hyperparameter_sweep/sweep_metrics_table.png" alt="Hyperparameter sweep metrics table">
           <figcaption><b>Figure 3.</b> Evaluation metrics across the sweep, one row per hyperparameter setting. The value in parentheses is each method&rsquo;s strength setting: &lambda; = OOD/calibration strength (ood_lambda); r = property-pull ratio alpha_ratio at &lambda;=0.7 (paper default r=3.0 = the &lambda;=0.7 row; r=1/2 are lower-pull variants); cap = MDLM+CG classifier-guidance &alpha;-cap (alpha_cap); M = SVDD number of candidates per step (tweedie/SVDD-PM); tds &alpha; = SVDD-TDS importance-resampling temperature; gs = DNA-Diff classifier-free guidance scale (cond_weight; author base 1.0). DRAKES fine-tunes the model weights for a fixed reward rather than steering generation at inference time, so it is shown as a retraining reference rather than a comparable operating point.</figcaption>
         </figure>
     </div>
 
     <div class="subpanel" id="MbXe_robustness">
-        <h2 class="section-title">Robustness</h2>
+        <h3 class="section-title">Robustness</h3>
 
         <figure class="table-figure">
           <div class="table-scroll">
@@ -459,7 +407,7 @@
     </div>
 
     <div class="subpanel" id="MbXe_ablation">
-        <h2 class="section-title">Effect of localization</h2>
+        <h3 class="section-title">Effect of localization</h3>
 
         <figure class="table-figure">
           <div class="table-scroll">
@@ -577,9 +525,10 @@
   </div>
 
   <!-- ===================== Reviewer 1JiD ===================== -->
-  <div class="panel" id="panel-1JiD" style="padding-top:2rem;">
-    <div class="subpanel active" id="1JiD_non-generative-baselines">
-        <h2 class="section-title">Non-generative baselines</h2>
+  <div class="panel" id="panel-1JiD">
+      <h2 class="reviewer-title">Reviewer 1JiD</h2>
+    <div class="subpanel" id="1JiD_non-generative-baselines">
+        <h3 class="section-title">Non-generative baselines</h3>
         <p class="note">Segmentation-and-shuffle baselines. Three independent criteria decide which positions to freeze &mdash; GC content, JASPAR motif hits, and predictor saliency &mdash; and each is swept over its strength parameter. Every table reports both shuffle schemes and carries LocoGen as a reference row.</p>
 
         <figure class="table-figure">
@@ -934,64 +883,5 @@
   </div>
 
 </main>
-
-<script>
-document.body.classList.remove('no-js');
-
-/* iframes get their src only once their panel is on screen, so the plot is
-   measured at its real size instead of 0x0 inside a hidden tab */
-function loadVisibleFrames(){
-  requestAnimationFrame(() => {
-    document.querySelectorAll('iframe[data-src]').forEach(f => {
-      if (f.offsetParent !== null) {
-        f.src = f.dataset.src;
-        f.removeAttribute('data-src');
-      }
-    });
-  });
-}
-
-function showPanel(key){
-  document.querySelectorAll('.tabs-l1 button').forEach(b =>
-    b.classList.toggle('active', b.dataset.panel === key));
-  document.querySelectorAll('.panel').forEach(p =>
-    p.classList.toggle('active', p.id === 'panel-' + key));
-  loadVisibleFrames();
-}
-
-function showSub(id){
-  const panel = document.getElementById(id).closest('.panel');
-  panel.querySelectorAll('.tabs-l2 button').forEach(b =>
-    b.classList.toggle('active', b.dataset.sub === id));
-  panel.querySelectorAll('.subpanel').forEach(s =>
-    s.classList.toggle('active', s.id === id));
-  loadVisibleFrames();
-}
-
-document.querySelectorAll('.tabs-l1 button').forEach(b =>
-  b.addEventListener('click', () => {
-    showPanel(b.dataset.panel);
-    history.replaceState(null, '', '#' + b.dataset.panel);
-  }));
-
-document.querySelectorAll('.tabs-l2 button').forEach(b =>
-  b.addEventListener('click', () => {
-    showSub(b.dataset.sub);
-    history.replaceState(null, '', '#' + b.dataset.sub);
-  }));
-
-/* deep links: #MbXe, #MbXe_ablation, #manuscript */
-(function fromHash(){
-  const hash = decodeURIComponent(location.hash.slice(1));
-  const sub  = hash && document.getElementById(hash);
-  if (sub && sub.classList.contains('subpanel')) {
-    showPanel(hash.split('_')[0]);
-    showSub(hash);
-  } else if (hash && document.getElementById('panel-' + hash)) {
-    showPanel(hash);
-  }
-  loadVisibleFrames();
-})();
-</script>
 </body>
 </html>
